@@ -25,6 +25,12 @@ class RubyEmphasizer
   end
 end
 
+set_trace_func(lambda { |event, _f, _l, id, _b, klass|
+  if event =~ /call|return/ && id.to_s == 'call' && klass != Proc
+    puts "[trace] #{klass}#call is called! as #{event}"
+  end
+})
+
 use RubyEmphasizer
 
 run SimpleApp.new
