@@ -13,4 +13,8 @@ class SimpleApp
   end
 end
 
+use Rack::Auth::Basic do |username, password|
+  username == 'udzura' && password == 'XXX'
+end
+
 run SimpleApp.new
